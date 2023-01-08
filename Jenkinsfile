@@ -9,7 +9,14 @@ def getFtpPublishProfile(def publishProfilesJson) {
 
 node {
   withEnv(['AZURE_SUBSCRIPTION_ID=faf21b7d-5d3b-4f18-b3c0-a368091fd0f4',
-        'AZURE_TENANT_ID=066de4b9-5e36-49f5-b628-017f057d7fb5']) {
+        'AZURE_TENANT_ID=066de4b9-5e36-49f5-b628-017f057d7fb5']) 
+  tools {
+        maven 'maven'
+    }
+    environment{
+        PATH = "/opt/maven/apache-maven-3.8.7/bin:$PATH"
+    }
+  {
     stage('init') {
       checkout scm
     }
